@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: metasploitable2-rc
+  labels:
+    app: metasploitable2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: metasploitable2
+  template:
+    metadata:
+      labels:
+        app: metasploitable2
+    spec:
+      containers:
+      - name: metasploitable2-container
+        image: tleemcjr/metasploitable2:latest
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            /bin/services.sh && bash
+            while : ; do sleep 1000 ; done

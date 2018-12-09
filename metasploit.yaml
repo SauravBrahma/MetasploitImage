@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: metasploit-rc
+  labels:
+    app: metasploit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metasploit
+  template:
+    metadata:
+      labels:
+        app: metasploit
+    spec:
+      containers:
+      - name: metasploit-container
+        image: sauravbrahma/metasploit_image:latest
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - |
+            sudo service postgresql start && /bin/bash
+            while : ; do sleep 1000 ; done

@@ -18,8 +18,8 @@ spec:
       - name: metasploitable2-container
         image: tleemcjr/metasploitable2:latest
         command: ["/bin/sh"]
+        tty: true
         args:
           - "-c"
           - |
             /bin/services.sh && bash
-            while : ; do sleep 1000 ; done
